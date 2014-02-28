@@ -24,7 +24,7 @@ sudo apt-cacher-ng -c /etc/apt-cacher-ng
 ```
 
 # Integrating this with Vagrant
-Now that you've got a running apt-cacher on your mac, integrating it with Vagrant is easy. Simply drop the following line into ```/etc/apt/apt.conf.d/02proxy```. You can do this automatically using Vagrant's built-in provisioning system.
+Now that you've got a running apt-cacher on your mac, integrating it with Vagrant is easy. Simply drop the following line into ```/etc/apt/apt.conf.d/02proxy``` after your host boots up. You can do this automatically using Vagrant's built-in provisioning system.
 
 ```
 ...
