@@ -22,3 +22,21 @@ Now you can start apt-cacher-ng using the supplied settings
 ```
 sudo apt-cacher-ng -c /etc/apt-cacher-ng
 ```
+
+# Integrating this with Vagrant
+Now that you've got a running apt-cacher on your mac, integrating it with Vagrant is easy. Simply drop the following line into ```/etc/apt/apt.conf.d/02proxy```. You can do this automatically using Vagrant's built-in provisioning system.
+
+```
+...
+$api_bootstrap = <<BOOTSTRAP
+echo 'Acquire::http { proxy "http://10.0.2.2:3142"; };' > /etc/apt/apt.conf.d/02proxy
+apt-get update
+apt-get upgrade
+BOOTSTRAP
+...
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.provision "shell", inline: $api_bootstrap
+...
+```
+
+After the first install things should go _considerably_ faster for you. You will also prevent a lot of traffic from flowing through your public network. This is especially important if you have multiple people at the same time using Vagrant.
