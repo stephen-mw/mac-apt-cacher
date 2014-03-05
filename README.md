@@ -20,7 +20,7 @@ Brew may suggest some commands in its caveats.  Don't execute them.
 Instead, do this:
 ```
 git clone git@github.com:stephendotexe/mac-apt-cacher.git
-mv mac-apt-cacher /usr/local/etc/apt-cacher-ng
+mv -fv mac-apt-cacher/* /usr/local/etc/apt-cacher-ng
 sudo cp -fv /usr/local/opt/apt-cacher-ng/*.plist /Library/LaunchDaemons
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.apt-cacher-ng.plist
 ```
